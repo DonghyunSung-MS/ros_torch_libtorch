@@ -20,13 +20,13 @@ int main(int argc, char** argv) {
   ros::NodeHandle nh;
 
   ros::Publisher torch_pub = nh.advertise<std_msgs::Float32MultiArray>("array", 100);
-  ros::Rate loop_rate(1000);
+  // ros::Rate loop_rate(1000);
 
   while (ros::ok())
 	{
 
     std::vector<torch::jit::IValue> inputs;
-    inputs.push_back(torch::ones({50}));
+    inputs.push_back(torch::randn({50}));
 
     // Execute the model and turn its output into a tensor.
     at::Tensor output = module.forward(inputs).toTensor();
@@ -47,7 +47,7 @@ int main(int argc, char** argv) {
 		//Do this.
 		ros::spinOnce();
 		//Added a delay so not to spam
-		loop_rate.sleep();
+		// loop_rate.sleep();
 	}
 
 
