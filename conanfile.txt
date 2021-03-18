@@ -1,0 +1,5 @@
+[requires] 
+conan_libtorch/1.8.0
+[generators]
+cmake_find_package
+cmake_paths
